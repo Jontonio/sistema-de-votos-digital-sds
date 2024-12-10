@@ -1,8 +1,8 @@
 import logoPeru from  '../assets/imgs/escudo-peru.png'
-import logoSDS from  '../assets/imgs/insignia-sds.png'
+import logoSDS from  '../assets/imgs/insignia.png'
 import { HeaderData } from './HeaderData'
 
-export const HeaderVoter = () => {
+export const HeaderVoter = ({hederData = true}) => {
   return (
     <>
         <div className='header-content border-round'>
@@ -17,7 +17,7 @@ export const HeaderVoter = () => {
                 <img className='img-logo-header' src={logoSDS} alt="" />
             </div>
         </div>
-        <HeaderData/>
+        {hederData && <HeaderData/>}
     </>
   )
 }
