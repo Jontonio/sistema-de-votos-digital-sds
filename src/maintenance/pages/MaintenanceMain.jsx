@@ -66,7 +66,7 @@ export const MaintenanceMain = () => {
                     label: 'Configuración',
                     icon: 'pi pi-database',
                     command: () => {
-                        navigate('./results-voter');
+                        navigate('./setting');
                     }
                 },
                 {

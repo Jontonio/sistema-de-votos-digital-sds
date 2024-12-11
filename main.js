@@ -1,18 +1,36 @@
-import { app, BrowserWindow } from 'electron'
+import { app, BrowserWindow } from 'electron';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
+import isDev from 'electron-is-dev';
 
-function createWindow () {
-  const win = new BrowserWindow({
-    width: 800,
-    height: 600,
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+let mainWindow;
+function createWindow() {
+  mainWindow = new BrowserWindow({
+    width: 1080,
+    height: 920,
+    autoHideMenuBar: true,
     webPreferences: {
-      nodeIntegration: true
+      nodeIntegration: true,
+      contextIsolation: false,
+      webSecurity: true,
     },
-  })
-
-  win.loadURL('http://localhost:5174')
-  win.setMenu(null); // don´t show menubar
-  win.maximize(); // inicializate max screen 
-
+  });
+  let startURL;
+  if (isDev) {
+    startURL = '<http://localhost:5173>';
+  } else {
+    startURL = `file://${join(__dirname, 'dist', 'index.html')}`;
+  }
+  mainWindow.loadURL(startURL);
+  mainWindow.on('closed', () => (mainWindow = null));
 }
+app.on('ready', createWindow);
 
-app.whenReady().then(createWindow)
+
+app.on('activate', () => {
+  if (mainWindow === null) {
+    createWindow();
+  }
+});

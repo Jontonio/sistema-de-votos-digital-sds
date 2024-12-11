@@ -28,4 +28,21 @@ export const openDB = () => {
     request.onerror = () => reject("Error al abrir la base de datos");
   });
 };
-  
+
+
+export const clearObjectStore = async (storeName) => {
+  const db = await openDB();
+  const transaction = db.transaction(storeName, "readwrite");
+  const objectStore = transaction.objectStore(storeName);
+
+  const request = objectStore.clear();
+
+  return new Promise((resolve, reject) => {
+    request.onsuccess = () => {
+      resolve(`Objeto estore ${storeName} eliminado correctamente`);
+    };
+    request.onerror = () => {
+      reject(`Error clearing object store ${storeName}`);
+    };
+  });
+};

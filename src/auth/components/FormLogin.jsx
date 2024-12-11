@@ -67,15 +67,15 @@ export const FormLogin = () => {
                                 </small>
                             </div>
                         </div>
-
-                        <div className="mt-2 text-right">
-                            <Link to="/restablecer" className="no-underline font-medium text-blue-500">¿Olvidaste tu contraseña?</Link>
-                        </div>
                         <div>
                             <Button label="Iniciar sesión" 
                                     type="submit" 
                                     // disabled={ mutelogin.isLoading }
                                     className="w-full mt-4 custom-btn"></Button>
+                                    <div className="text-center mt-3">
+                                        <Link to="/" className="no-underline font-medium text-blue-500">Regresar a la página de inicio</Link>
+                                    </div>
+
                         </div>
                     </form>
                 </div>

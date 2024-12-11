@@ -12,6 +12,7 @@ import { AddCandidate } from './maintenance/pages/AddCandidate.jsx'
 import { Candidates } from './maintenance/pages/Candidates.jsx'
 import { Students } from './maintenance/pages/Students.jsx'
 import { ResultVoter } from './maintenance/pages/ResultVoter.jsx'
+import { Setting } from './maintenance/pages/Setting.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
@@ -24,6 +25,7 @@ createRoot(document.getElementById('root')).render(
           <Route path="add-candidate" element={<AddCandidate />} />
           <Route path="candidates" element={<Candidates />} />
           <Route path="students" element={<Students />} />
+          <Route path="setting" element={<Setting />} />
           <Route path="results-voter" element={<ResultVoter />} />
         </Route>
         <Route path="/main" element={<App />} />

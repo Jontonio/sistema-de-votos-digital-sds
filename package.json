@@ -6,11 +6,11 @@
   "main": "main.js",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "lint": "eslint .",
     "preview": "vite preview",
+    "react": "vite",
     "electron": "electron .",
-    "package": "electron-packager ."
+    "build": "vite build",
+    "dist": "electron-builder"
   },
   "dependencies": {
     "@react-pdf/renderer": "^4.1.5",
@@ -41,5 +41,51 @@
     "eslint-plugin-react-refresh": "^0.4.14",
     "globals": "^15.12.0",
     "vite": "^6.0.1"
+  },
+  "build": {
+    "appId": "com.example.your_app",
+    "productName": "your_app",
+    "directories": {
+      "output": "dist_electron"
+    },
+    "files": [
+      "dist/**/*",
+      "main.js"
+    ],
+    "extraResources": {
+      "from": "dist/",
+      "to": "app/dist/"
+    },
+    "mac": {
+      "target": "dmg",
+      "category": "public.app-category.productivity"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "perMachine": true,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb",
+        "tar.gz"
+      ],
+      "category": "Utility",
+      "icon": "build/icons"
+    }
   }
 }
