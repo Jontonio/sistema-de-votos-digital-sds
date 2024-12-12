@@ -46,7 +46,7 @@ export const FormValidationVoter = () => {
         const { field, fieldState } = useController({
             name: "keyVoter",
             control,
-            rules: { required: true, maxLength:7, minLength:7, pattern:/^\d{4}-[a-zA-Z]{2}$/ },
+            rules: { required: true, maxLength:6, minLength:6, pattern:/^\d{4}[a-zA-Z]{2}$/ },
         });
     
         return (
@@ -58,7 +58,7 @@ export const FormValidationVoter = () => {
                         id='keyVoter'
                         type="text"
                         autoComplete="off"
-                        maxLength={7}
+                        maxLength={6}
                         onChange={(e) => field.onChange(e.target.value)}
                         onBlur={field.onBlur}
                         className={fieldState.error ? 'p-invalid w-full' : 'w-full'}

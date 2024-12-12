@@ -11,7 +11,7 @@ export const FormStudent = () => {
     const keyVoterFuntion = (dni, apellidos) => {
         const lastDigits = String(dni).slice(-4)
         let lastCharts = String(apellidos).slice(-2).toUpperCase(); 
-        const code_voter = `${lastDigits}-${lastCharts}`
+        const code_voter = `${lastDigits}${lastCharts}`
         return code_voter.toUpperCase();
     }
 

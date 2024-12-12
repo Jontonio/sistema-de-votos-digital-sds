@@ -13,6 +13,7 @@ export const Students = () => {
   const [value, setValue] = useState('');
   const [visiblePrint, setVisiblePrint] = useState(false);
   const [listStudentPrint, setListStudentPrint] = useState([]); 
+  const [showCode, setShowCode] = useState(false);
 
   useEffect(() => {
       getStudents().then( res => {
@@ -42,14 +43,37 @@ export const Students = () => {
     setStudents(resultFilter);
   }
 
-  const printListStudent = () => {
+  const getDataStudents = () => {
+
     getStudents().then( res => {
       setStudents(res)
       setVisiblePrint(true);
       setListStudentPrint(res)
-    }).catch(e => {
-        console.log(e)
     })
+
+  }
+
+  const printListStudent = () => {
+
+    confirmDialog({
+      message: '¿En el reporte que desea mostrar es interno o público?',
+      header: 'Mostrar padrón electoral',
+      icon: 'pi pi-exclamation-triangle',
+      defaultFocus: 'accept',
+      acceptLabel: 'Si, publico',
+      rejectLabel: 'No, público',
+      accept:() => {
+        getDataStudents();
+        setShowCode(true);
+      },
+      reject:() => {
+        setShowCode(false);
+        getDataStudents();
+      }
+    });
+
+    
+
   }
 
   const start = <div>
@@ -100,6 +124,7 @@ export const Students = () => {
               icon="pi pi-print" 
               label="Lista"
               size="small"
+              disabled={students.length==0}
               onClick={ printListStudent } 
                             />
       <TableStudents students={students} sendDelete={reciveDelete}/>
@@ -110,7 +135,7 @@ export const Students = () => {
                     position="top"
                     onHide={() => setVisiblePrint(false)}>
                 <PDFViewer width="100%" height="99%">
-                    {  listStudentPrint.length!=0 && <PrintStudent data={ listStudentPrint }/>}
+                    {  listStudentPrint.length!=0 && <PrintStudent data={ listStudentPrint } showCode={showCode}/>}
                 </PDFViewer>
             </Dialog>
     </div>

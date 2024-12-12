@@ -38,12 +38,11 @@ export const CardCandidate = ({ candidate, setSelectedCandidate, selectedCandida
             showWarn(toast, "Registro de votos", String(e))
         })
         
-        
     }
 
     return (
             <Card className={isClicked?"mt-1 card-candidate-select":"mt-1 card-candidate"} onClick={candidateSelect}>
-                <Toast ref={toast} position="center" />
+                <Toast ref={toast} position="bottom-center" />
                 <div className="container-main-candidate">
                     <div className="container-name-candidate">
                         <h2>{`${candidate.nombres} ${candidate.apellidos}`.toUpperCase()}</h2>

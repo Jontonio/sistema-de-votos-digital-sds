@@ -22,7 +22,7 @@ export const FormLogin = () => {
                 if(String(data.password).match(password)) {
                     const { nombres, email } = data;
                     generarToken({ nombres, email })
-                    navigate('/config', { replace:true })
+                    navigate('/config/add-student', { replace:true })
                 }else{
                     showError(toast, "Error auth", "El email y/o password es incorrecta")
                 }

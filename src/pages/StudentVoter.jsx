@@ -34,9 +34,9 @@ export const StudentVoter = () => {
     <>
       { data?
         <div>
-            <HeaderVoter/>
+            <HeaderVoter data={data}/>
             {listCandidate.length==0?<MessageCard message={'Lista de candidatos vacía'}/>:''}
-            <div className="container-list-candidate">
+            <div className="container-list-candidate mt-2">
               { listCandidate.map( item => {
                 return <CardCandidate key={item.dni} 
                                       candidate={item}

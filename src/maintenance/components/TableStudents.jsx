@@ -15,7 +15,7 @@ export const TableStudents = ({ students, sendDelete }) => {
     }
 
     const grateSecctionTemplate = ({ grado, seccion }) => {
-        return <div>&quot;{grado}&quot;-&quot;{seccion}&quot;</div>
+        return <div>{grado}-&quot;{seccion}&quot;</div>
     }
 
     return (
